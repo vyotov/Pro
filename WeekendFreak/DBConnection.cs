@@ -90,11 +90,11 @@ namespace WeekendFreak
             }
         }
 
-        //Update statement
-        public void Update()
+
+        public void UpdateInEvent(int clientID)
         {
             //example query
-            string query = "UPDATE tableinfo SET name='Joe', age='22' WHERE name='John Smith'";
+            string query = "UPDATE client SET InEvent = 1 WHERE clientID ="+ clientID;
 
             //Open connection
             if (this.OpenConnection() == true)
@@ -114,6 +114,9 @@ namespace WeekendFreak
             }
         }
 
+
+
+       
         //Delete statement
         public void Delete()
         {
@@ -229,4 +232,4 @@ namespace WeekendFreak
         }
         
     }
-}
+

@@ -14,17 +14,14 @@ namespace WeekendFreak
 {
     public partial class EnteringApp : Form
     {
-        public EnteringApp()
-        {
-            InitializeComponent();
-        }
-
+    
         
-            private DBConnection dbConnect;
+        private DBConnection dbConnect;
         RFID rfid1;
         string lastRFIDTag;
         Int32 TagCtr;
         string RFIDvalue = "";
+        int clientID = 0;
 
         public EnteringApp()
         {
@@ -60,7 +57,7 @@ namespace WeekendFreak
             lbPrevRFIDTags.Items.Insert(0,
                 string.Format("Tag: {0} - {1}", ++TagCtr, lastRFIDTag));
 
-            listBox1.Items.Add(lastRFIDTag);
+             textBox1.Text = lastRFIDTag.ToString();
         }
 
         void rfid_Detach(object sender, DetachEventArgs e)
@@ -80,6 +77,34 @@ namespace WeekendFreak
         {
 
         }
+
+        private void label2_Click(object sender, EventArgs e)
+        {
+        
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            List<string>[] list;
+            list = dbConnect.SelectClient();
+            int m = 2;
+            
+
+            for (int n = 0; n <= m; n++)
+            {
+                if (list[1][n] == lastRFIDTag)
+                {
+                    listBox1.Items.Add(list[2][n] + " " + list[3][n]);
+                    clientID = Convert.ToInt32(list[0][n]);
+                }             
+            }
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            dbConnect.UpdateInEvent(clientID);
+            MessageBox.Show("Client is Activated");
+        }
         }
     }
-}
+

@@ -14,14 +14,15 @@ namespace WeekendFreak
 {
     public partial class EnteringApp : Form
     {
-    
-        
+
+
         private DBConnection dbConnect;
         RFID rfid1;
         string lastRFIDTag;
         Int32 TagCtr;
         string RFIDvalue = "";
         int clientID = 0;
+
 
         public EnteringApp()
         {
@@ -30,6 +31,7 @@ namespace WeekendFreak
             TagCtr = 0;
             dbConnect = new DBConnection();
         }
+
 
         private void EnteringApp_Load(object sender, EventArgs e)
         {
@@ -54,10 +56,10 @@ namespace WeekendFreak
             txtTag.Text = "";
             rfid1.LED = false;      // light off
             //write held Tag ID to listview
-            lbPrevRFIDTags.Items.Insert(0,
-                string.Format("Tag: {0} - {1}", ++TagCtr, lastRFIDTag));
+           // lbPrevRFIDTags.Items.Insert(0,
+           //     string.Format("Tag: {0} - {1}", ++TagCtr, lastRFIDTag);
 
-             textBox1.Text = lastRFIDTag.ToString();
+            textBox1.Text = lastRFIDTag.ToString();
         }
 
         void rfid_Detach(object sender, DetachEventArgs e)
@@ -76,19 +78,17 @@ namespace WeekendFreak
         private void antennaCheckBox_CheckedChanged(object sender, EventArgs e)
         {
 
-        }
-
-        private void label2_Click(object sender, EventArgs e)
-        {
         
+
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void button7_Click_1(object sender, EventArgs e)
         {
+            //MessageBox.Show("Test");
             List<string>[] list;
             list = dbConnect.SelectClient();
             int m = 2;
-            
+
 
             for (int n = 0; n <= m; n++)
             {
@@ -96,15 +96,23 @@ namespace WeekendFreak
                 {
                     listBox1.Items.Add(list[2][n] + " " + list[3][n]);
                     clientID = Convert.ToInt32(list[0][n]);
-                }             
+                }
             }
         }
 
-        private void button2_Click(object sender, EventArgs e)
+        private void button6_Click(object sender, EventArgs e)
         {
             dbConnect.UpdateInEvent(clientID);
             MessageBox.Show("Client is Activated");
         }
-        }
-    }
 
+        private void button1_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            Menu MenuForm = new Menu();
+            MenuForm.Show();
+        }
+
+        
+    }
+}

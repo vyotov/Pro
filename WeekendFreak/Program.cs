@@ -16,7 +16,7 @@ namespace WeekendFreak
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new EnteringApp());
+            Application.Run(new Menu());
         }
     }
 }

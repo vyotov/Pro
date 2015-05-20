@@ -8,9 +8,9 @@ namespace WeekendFreak
 {
     class DBConnection
     {
-        int test = 0;
+        public int test = 10;
 
-        public void test{
+        public void testAdd{
         test++;
         }
         

@@ -7,27 +7,34 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Phidgets;
+using Phidgets.Events;
 
 namespace WeekendFreak
 {
-    public partial class Form1 : Form
+    public partial class EnteringApp : Form
     {
+        public EnteringApp()
+        {
+            InitializeComponent();
+        }
 
-        private DBConnect dbConnect;
+        
+            private DBConnection dbConnect;
         RFID rfid1;
         string lastRFIDTag;
         Int32 TagCtr;
         string RFIDvalue = "";
 
-        public Form1()
+        public EnteringApp()
         {
             InitializeComponent();
             lastRFIDTag = "";
             TagCtr = 0;
-            dbConnect = new DBConnect();
+            dbConnect = new DBConnection();
         }
 
-        private void Form1_Load(object sender, EventArgs e)
+        private void EnteringApp_Load(object sender, EventArgs e)
         {
             rfid1 = new RFID();
             rfid1.Attach += new AttachEventHandler(rfid_Attach);
@@ -73,11 +80,6 @@ namespace WeekendFreak
         {
 
         }
-
-        private void button1_Click(object sender, EventArgs e)
-        {
-
         }
     }
-    
 }

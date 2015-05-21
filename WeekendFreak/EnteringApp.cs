@@ -41,13 +41,18 @@ namespace WeekendFreak
             rfid1.Tag += new TagEventHandler(rfid_Tag);
             rfid1.TagLost += new TagEventHandler(rfid_TagLost);
             rfid1.open();
+            
         }
 
         void rfid_Tag(object sender, TagEventArgs e)
         {
+
+            MessageBox.Show("tag: " + e.Tag);
+
             txtTag.Text = e.Tag;
 
             lastRFIDTag = txtTag.Text;
+            
             rfid1.LED = true;       // light on
         }
 
@@ -55,10 +60,9 @@ namespace WeekendFreak
         {
             txtTag.Text = "";
             rfid1.LED = false;      // light off
-            //write held Tag ID to listview
-           // lbPrevRFIDTags.Items.Insert(0,
-           //     string.Format("Tag: {0} - {1}", ++TagCtr, lastRFIDTag);
-
+           // write held Tag ID to listview
+            listBox1.Items.Insert(0,
+                string.Format("                     Tag: {0} - {1}", ++TagCtr, lastRFIDTag));
             textBox1.Text = lastRFIDTag.ToString();
         }
 
@@ -84,7 +88,7 @@ namespace WeekendFreak
 
         private void button7_Click_1(object sender, EventArgs e)
         {
-            //MessageBox.Show("Test");
+            MessageBox.Show("Test: " + lastRFIDTag);
             List<string>[] list;
             list = dbConnect.SelectClient();
             int m = 2;
